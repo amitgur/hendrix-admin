@@ -5,10 +5,10 @@
 echo 'starting BandPad with forever'
 
     echo "Stoping node thread"
-    forever stop hendrix-bandpad.js
+    forever stop hendrix-admin.js
 
     echo "Restarting Hendrix BandPad"
     # user
-    forever start hendrix-bandpad.js --production
+    forever start hendrix-admin.js --production
 
 
