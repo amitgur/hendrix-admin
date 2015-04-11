@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title #{title}
+        meta(name="description", content="BandPad Administrator")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/chosen/chosen.min.css')
+        link(rel='stylesheet', type='text/css', href='/admin/admin/css/style.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/ng-table/ng-table.css')
+
+        script(type="text/javascript").
+            window.scoreLanguage = '!{language}'
+
+    body
+        include admin_menu
+        .container
+            include admin_message
+            .jumbotron
+                h1 !{appDesc}
+                h2 Administrator panel
+                if (username)
+                    h3 Welcome !{username}
+                h3 choose your action from the top menu
+
+            .icon-logo#root-logo
+
+    script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+

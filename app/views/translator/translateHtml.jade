@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		title #{title}
+		meta(name="description", content="BandPad Translator")
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		include translator_css
+
+	body
+		include ../translator/translator_menu
+		.container
+			h1.col-lg-11 !{title}
+			form.form-horizontal(action="editHtmlPost", method="post", enctype="multipart/form-data")
+				.row.well
+					fieldset.col-lg-8.col-lg-offset-2
+						.form-group
+							textarea.form-control(style='height:400px',name='htmlText',row='200',col='400') !{htmlText}
+						input(name='prop',type='hidden',value=prop)
+				.row
+					button.col-lg-1.btn.btn-default(type='submit') Save
+	include translator_js

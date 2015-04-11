@@ -1,0 +1,28 @@
+div.navbar.navbar-default.navbar-fixed-top
+	div.container
+		div.navbar-header
+			a.navbar-brand(href='/admin') !{appDesc} Administrator
+			button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+		div#navbar-main.navbar-collapse.collapse
+			ul.nav.navbar-nav
+				if (username)
+					li
+						a(href='/admin/translate/list') Translate Docs
+					li
+						a(href='/admin/system/log') Log
+			if (username)
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='/admin/signOut') Sign Out
+			else
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='/admin/signUp') Sign Up
+					li
+						a(href='/admin/signIn') Sign In
+.container(style='margin-top:8em')
+
+

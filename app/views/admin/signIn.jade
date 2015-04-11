@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title #{title}
+        meta(name="description", content="BandPad Administrator")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+        link(rel='stylesheet', type='text/css', href='/admin/admin/css/style.css')
+
+    body
+        include admin_menu
+        .container
+            include admin_message
+            .row
+                .col-lg-6.col-lg-offset-3.well
+                    form.form-horizontal(action='/admin/login', method='post')
+                        fieldset
+                            legend Login Administrator
+                            .form-group
+                                label.col-lg-4.control-label(for='username') User Name
+                                .col-lg-6
+                                    input.form-control(type='text', name='username')
+                            .form-group
+                                label.col-lg-4.control-label(for='password') Password
+                                .col-lg-6
+                                    input.form-control(type='password', name='password')
+                            .form-group
+                                button.btn.btn-default.center-block(type='submit') Login
+
+                .row.col-lg-12
+                    .icon-logo#root-logo
+
+    script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')

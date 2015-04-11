@@ -1,0 +1,31 @@
+/* fix flatly fonts */
+html {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.margin-top {
+    margin: 40px 0;
+}
+
+.chosen-container-single .chosen-single {
+    height: 2.5em ;
+    line-height: 2.5em;
+}
+
+td {
+    text-align: center;
+}
+#root-logo {
+    font-size: 20em;
+    text-align: center;
+}
+
+.single-tag {
+    cursor: pointer;
+}

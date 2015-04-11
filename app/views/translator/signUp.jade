@@ -1,0 +1,49 @@
+doctype html
+html(lang='en')
+	head
+		include translator_css
+	body
+		include translator_menu
+		.container
+			include translator_message
+			.row.col-lg-8.col-lg-offset-2.well
+				form.signup.form-horizontal(action="/translator/postSignUp", method="post")
+					legend Translator sign up
+					.form-group
+						label.col-lg-4.control-label(for='name') Full name
+						.col-lg-6
+							input.form-control(type='text', name="name", placeholder='Full name')
+					.form-group
+						label.col-lg-4.control-label(for='email') Email
+						.col-lg-6
+							input.form-control(type='text', name="email", placeholder='Email')
+					.form-group
+						label.col-lg-4.control-label(for='username') Username
+						.col-lg-6
+							input.form-control(type='text', name="username", placeholder='Username')
+					.form-group
+						label.col-lg-4.control-label(for='password') Password
+						.col-lg-6
+							input.form-control(type='password', name="password", placeholder='Password')
+					.form-group
+						label.col-lg-4.control-label(for='language') Choose your language
+						.col-lg-6
+							select.select-chosen(name='language')
+								each lang, i in languages
+									option(value=lang.code) #{lang.languageName}
+					.form-group
+						label.col-lg-4.control-label(for='country') Choose your country
+						.col-lg-6
+							select.select-chosen(name='country')
+								each country, i in countries
+									option(value=country.iso) #{country.country}
+					.form-group
+						label.col-lg-4.control-label(for='magicword') Magic Word
+						.col-lg-6
+							input.form-control(type='text', name="magicword", placeholder='Magic Word')
+
+					.form-group
+						button.btn.btn-default.center-block(type='submit') Sign up
+						input(type='hidden',name='profile',value='translator')
+
+	include translator_js

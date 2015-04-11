@@ -1,0 +1,15 @@
+if (message)
+    if messageType == 'error'
+        .alert.alert-warning.alert-dismissible(role='alert')
+            button.close(type="button",data-dismiss="alert")
+                span(aria-hidden="true") &times;
+                span(class="sr-only") Close
+            strong Error!
+            span !{message}
+    if messageType == 'info'
+        .alert.alert-info.alert-dismissible(role='alert')
+            button.close(type="button",data-dismiss="alert")
+                span(aria-hidden="true") &times;
+                span(class="sr-only") Close
+            strong Message
+            span !{message}

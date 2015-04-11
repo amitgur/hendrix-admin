@@ -1,0 +1,62 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title #{title}
+        meta(name="description", content="BandPad Administrator")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/chosen/chosen.min.css')
+        link(rel='stylesheet', type='text/css', href='/admin/admin/css/style.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/ng-table/ng-table.css')
+
+        script  var translate=!{JSON.stringify(translate)};
+        script  var translateId='!{translateId}';
+
+    body
+        include ../admin_menu
+        .container
+            include ../admin_message
+            h1.col-lg-11 !{title}
+            form.form-horizontal(action="/admin/translate/editPost/addOrUpdatePost", method="post")
+                .row.well
+                    fieldset.col-lg-8.col-lg-offset-2
+                        .form-group
+                            label.col-lg-4.control-label(for='key') Key
+                            .col-lg-6
+                                if disabled
+                                    input.form-control(name='key', type='text', required='',value=translate.key,disabled)
+                                    input.form-control(name='key', type='hidden', value=translate.key)
+                                else
+                                    input.form-control(name='key', type='text', required='',value=translate.key)
+                        .form-group
+                            label.col-lg-4.control-label(for='page') Page
+                            .col-lg-6
+                                input.form-control(name='page', type='text', required='',value=translate.page)
+                        .form-group
+                            label.col-lg-4.control-label(for='page') Text in english
+                            .col-lg-6
+                                input.form-control(name='text', type='text', required='',value=translate.text)
+                        .form-group
+                            label.col-lg-4.control-label(for='page') Description
+                            .col-lg-8
+                                textarea.form-control(name='description', type='text', rows=4)
+                                    | !{translate.description}
+                        .form-group
+                            label.col-lg-4.control-label(for='exampleLink') Example link
+                            .col-lg-8
+                                input.form-control(name='exampleLink', type='text', value=translate.exampleLink)
+                        input(name="_id",type='hidden',value=translate._id)
+                        input(name="last",type='hidden',value=translate.last)
+                .row
+                    button.col-lg-1.btn.btn-default(type='submit', style="margin-top:25px") Save
+
+    script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+    script(type='text/javascript', src='/admin/lib/chosen/chosen.jquery.min.js')
+    script(type='text/javascript', src='/admin/lib/angular/angular.js')
+    script(type='text/javascript', src='/admin/lib/ng-table/ng-table.js')
+
+    script(type='text/javascript', src='/admin/admin/js/editTranslate.js')

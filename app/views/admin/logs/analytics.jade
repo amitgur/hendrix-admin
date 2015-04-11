@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		title #{title}
+		meta(name="description", content="BandPad Administrator")
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+		link(rel='stylesheet', type='text/css', href='/admin/css/errors.css')
+
+		script  var allData=!{JSON.stringify(allData)};
+		script  var modules=!{JSON.stringify(modules)};
+
+	body
+		include ../admin_menu
+		.container
+			include ../admin_message
+			each mod in modules
+				.row
+					h3 !{mod}
+					.col-md-12
+						canvas(id="myChart"+mod,width="1024px")
+
+
+	script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+	script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+	script(type='text/javascript', src='/admin/lib/chartjs/Chart.js')

@@ -1,0 +1,42 @@
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title BandPad Log
+        meta(name="description", content="Band Pad Log")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+        link(rel='stylesheet', type='text/css', href='/admin/css/errors.css')
+    body
+        div.navbar.navbar-default.navbar-fixed-top
+            div.container
+                div.navbar-header
+                    a.navbar-brand(href='https://bandpad.co') Bandpad Log for #{app} app
+
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+        .container
+            include ../admin_menu
+            .row
+                .col-md-12
+                    table.table.table-striped.table-hover
+                        thead
+                            th level
+                            th message
+                            th time
+                        tbody
+                            - for (var i = 0; i < log.length; ++i) {
+                                tr
+                                    td
+                                        span(class='label-'+log[i].level).label  #{log[i].level}
+                                    td= log[i].message
+                                    td= log[i].timestamp
+                            - }
+
+    script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+
+

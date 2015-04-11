@@ -1,0 +1,55 @@
+html {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#main-menu li {
+        margin-right:30px;
+}
+nav a {
+    font-size: 1.3em;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.margin-top {
+    margin: 40px 0;
+}
+
+#root-logo {
+    font-size: 20em;
+    text-align: center;
+}
+.align-right {
+    text-align: right!important;
+}
+.align-center {
+    text-align: center;
+}
+
+.chosen-container-single .chosen-single {
+    height: 2.5em ;
+    line-height: 2.5em;
+}
+
+
+.ui-match {
+    background: yellow;
+}
+

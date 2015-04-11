@@ -1,0 +1,58 @@
+doctype html
+html(lang='en')
+
+	head
+		script var translate=!{JSON.stringify(translate)};
+
+		include translator_css
+
+	body(ng-app='translatorSoloist',ng-controller='translatorTranslatePages')
+
+		include translator_menu
+
+		.container
+			include translator_message
+			h1 Translate Pages for !{languageDesc}
+			ul.nav.nav-tabs#translate-tab
+				- for (var i = 0; i < languagePages.length; ++i) {
+				li
+					a(href='#translate-' + i,data-toggle='tab') !{languagePages[i]}
+				-}
+			.tab-content
+				- for (var p = 0; p < languagePages.length; ++p) {
+					.tab-pane(id='translate-' + p)
+						#accordion.panel-group
+							.row
+								h4.col-lg-3 Text in english
+								h4.col-lg-6 Translated text
+								h4.col-lg-3.align-right Update translation
+
+							- for (var i = 0; i < translate.length; ++i) {
+								if (translate[i].page == languagePages[p])
+									.panel.panel-default
+										.panel-heading
+											.panel-title.row
+												a(data-toggle="collapse",data-parent="#accordion",href="#collapse"+i)
+													p.col-lg-3 !{translate[i].text}
+												.col-lg-6
+													textarea.form-control(ng-change="change('" + translate[i].key + "')",ng-model=translate[i].key,name=translate[i].key,data-last=translate[i].text,data-page=translate[i].page, type='text')
+												.col-lg-3
+													button(id="btn" + translate[i].key,ng-click="update('" + translate[i].key + "')",disabled="disabled").btn.btn-default.pull-right Update
+
+										.panel-collapse.collapse(id="collapse"+i)
+											.panel-body
+												.col-lg-12
+													h4 Description:
+													p !{translate[i].description}
+												.col-lg-12
+													a(href=translate[i].exampleLink,target="_blank") Example link
+												.col-lg-12
+													h4 Key:
+													p !{translate[i].key}
+
+
+							-}
+				-}
+
+
+	include translator_js

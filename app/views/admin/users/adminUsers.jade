@@ -1,0 +1,41 @@
+doctype html
+html(lang='en')
+	head
+	meta(charset='utf-8')
+	title Admin users
+	meta(name="description", content="BandPad Administrator")
+	meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+	link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+	link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+	link(rel='stylesheet', type='text/css', href='/admin/admin/css/style.css')
+	link(rel='stylesheet', type='text/css', href='/admin/lib/ng-table/ng-table.css')
+
+	body(ng-app='adminTable',ng-controller='adminUserListCtrl')
+		include ../admin_menu
+		.container
+			.row
+				h3 !{title}
+			.row.col-lg-12
+				table.table(ng-table='tableParams',show-filter='true')
+					tr(ng-repeat='user in $data')
+						td(data-title="'Name'" sortable="'name'",filter="{ 'name': 'text' }") {{user.name}}
+						td(data-title="'Email'" sortable="'email'",filter="{ 'email': 'text' }") {{user.email}}
+						td(data-title="'Secure Key'" sortable="'teacherKey'",filter="{ 'teacherKey': 'text' }") {{user.teacherKey}}
+						td(data-title="'Payment Expired'" sortable="'paymentExpired'",filter="{ 'paymentExpired': 'text' }") {{user.paymentExpired}}
+						td(width="80px",data-title="'Type'" sortable="'paymentType'",filter="{ 'paymentType': 'text' }") {{user.paymentType}}
+						td(width="80px",data-title="'Mail Confirm'" sortable="'confirmed'",filter="{ 'confirmed': 'text' }") {{user.confirmed}}
+						td(width="80px",data-title="'Wait Confirm'" sortable="'waitForConfirm'",filter="{ 'waitForConfirm': 'text' }") {{user.waitForConfirm}}
+						td(data-title="'Confirm'")
+							a(href="#",ng-click="confirmTeacher(user.email, user.name)",ng-show='{{user.waitForConfirm}}') Confirm
+
+	script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+	script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+	script(type='text/javascript', src='/admin/lib/angular/angular.js')
+	script(type='text/javascript', src='/admin/lib/ng-table/ng-table.js')
+	script(type='text/javascript', src='/admin/admin/js/adminUsers.js')
+
+	script.
+		app.run(function ($rootScope) {
+			$rootScope.dataList = !{JSON.stringify(users)}
+		})

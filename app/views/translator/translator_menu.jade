@@ -1,0 +1,40 @@
+div.navbar.navbar-default.navbar-fixed-top
+    div.container
+        div.navbar-header
+            a.navbar-brand(href='/translator') !{appDesc}  Translator
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+        div#navbar-main.navbar-collapse.collapse
+            ul.nav.navbar-nav
+                if (username)
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown') Translate
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/translator/translatePages') Pages
+                            li
+                                a(href='/translator/translatePrint') Print Pages
+            if (username)
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='/translator/signOut') Sign Out
+            else
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='/translator/signUp') Sign Up
+.container(style='margin-top:8em')
+
+
+
+
+
+
+
+
+
+
+
+

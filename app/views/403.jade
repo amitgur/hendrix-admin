@@ -1,0 +1,29 @@
+html(lang='en')
+	head
+		meta(charset='utf-8')
+		title BandPad - Not authorized
+		meta(name="description", content="BandPad Not Found Page")
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+		link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+		link(rel='stylesheet', type='text/css', href='/admin/css/errors.css')
+
+	body
+		nav.navbar.navbar-default
+			.navbar-header
+				a.navbar-brand(href='/').icon-logo
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+		.container
+			.jumbotron
+				h1 BandPad Homepage
+				p 403 - Not authorized login
+				p !{message}
+
+		script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+		script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+
+

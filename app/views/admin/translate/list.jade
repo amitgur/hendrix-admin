@@ -1,0 +1,50 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title #{title}
+        meta(name="description", content="BandPad Administrator")
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', type='text/css', href='/admin/lib/bootstrap/dist/css/bootstrap.css')
+        link(rel='stylesheet', type='text/css', href='/admin/weblib/bootstrap-flatly/flatly.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/chosen/chosen.min.css')
+        link(rel='stylesheet', type='text/css', href='/admin/admin/css/style.css')
+        link(rel='stylesheet', type='text/css', href='/admin/lib/ng-table/ng-table.css')
+
+        script  var pages=!{JSON.stringify(pages)};
+
+    body(ng-app='adminTable',ng-controller='adminListCtrl')
+        include ../admin_menu
+        .container
+            include ../admin_message
+            ul.nav.nav-tabs#admin-translate-tab
+                for page in pages
+                    li(style='padding-right:20px;font-size:2em')
+                        a(href='#' + page, data-toggle='tab') !{page}
+            .tab-content
+                for page in pages
+                    .tab-pane(id=page)
+                        .row.col-lg-offset-2.col-lg-10
+                            h1.col-lg-10 Translate List for page !{page}
+                            a(href='add')
+                                button.btn.btn-default.col-lg-2(style="margin-top:25px") Add New
+                        .row.col-lg-offset-2.col-lg-8
+                            table.table(ng-table='tableParams'+page,show-filter='true')
+                                tr(ng-repeat='translate in $data')
+                                    td(data-title="'Key'" sortable="'key'",filter="{ 'key': 'text' }") {{translate.key}}
+                                    td(data-title="'Text'" sortable="'text'",filter="{ 'text': 'text' }") {{translate.text}}
+                                    td(data-title="'Edit'")
+                                        a(ng-href="/admin/translate/edit/{{translate._id}}") Edit
+                                    td(data-title="'Remove'")
+                                        a(href="#",ng-click="removeTranslate(translate._id)") Remove
+
+    script(type='text/javascript', src='/admin/lib/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/admin/lib/bootstrap/dist/js/bootstrap.js')
+    script(type='text/javascript', src='/admin/lib/chosen/chosen.jquery.min.js')
+    script(type='text/javascript', src='/admin/lib/angular/angular.js')
+    script(type='text/javascript', src='/admin/lib/ng-table/ng-table.js')
+    script(type='text/javascript', src='/admin/admin/js/listTranslate.js')
+    script.
+        app.run(function($rootScope) {$rootScope.dataList=!{JSON.stringify(translateList)} })
+
