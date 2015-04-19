@@ -55,5 +55,10 @@
     "underscore": "^1.8.3",
     "winston": "0.7.3",
     "winston-mail": "0.2.7"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.1",
+    "grunt-shell": "^1.1.2"
   }
 }
