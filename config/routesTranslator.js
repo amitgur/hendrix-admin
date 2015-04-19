@@ -80,7 +80,7 @@ module.exports = function(app, passport) {
 	);
 
 	// translator home
-	app.get('/translator/',
+	app.get('/translator',
 		adminCtrl.fetchMessage,
 		translatorCtrl.root);
 

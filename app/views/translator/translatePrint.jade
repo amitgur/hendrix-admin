@@ -12,24 +12,22 @@ html(lang='en')
 
 		.container
 			include translator_message
-			h1 Translate Pages for !{languageDesc}
+			h1 Print Pages for !{languageDesc}
 			ul.nav.nav-tabs#translate-tab
-				- for (var i = 0; i < languagePages.length; ++i) {
-				li
-					a(href='#translate-' + i,data-toggle='tab') !{languagePages[i]}
-					-}
-			.tab-content
-				- for (var p = 0; p < languagePages.length; ++p) {
-				.tab-pane(id='translate-' + p)
-					.row
+				for page, i in languagePages
+					li
+						a(href='#translate-' + i,data-toggle='tab') !{page}
 
-					- for (var i = 0; i < translate.length; ++i) {
-					.row
-						if (translate[i].page == languagePages[p])
-							//h4.col-lg-1 !{i}
-							h4.col-lg-11(ng-bind=translate[i].key,data-last=translate[i].text,data-page=translate[i].page, type='text')
-						-}
-					-}
+			.tab-content
+				for page, p in languagePages
+					.tab-pane(id='translate-' + p)
+						for trans in translate
+							if (trans.page == page)
+								.row
+									// h4.col-lg-1 !{i}
+									h4.col-lg-11(ng-bind=trans.key,data-last=trans.text,data-page=trans.page, type='text')
+
+
 	include translator_js
 
 

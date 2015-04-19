@@ -196,7 +196,6 @@ exports.translatePrint = function(req, res, next) {
 			username: req.user.username,
 			isRtl : checkLanguageDirection(language)
 		};
-
 		res.render('translator/translatePrint', pars);
 
 	});
