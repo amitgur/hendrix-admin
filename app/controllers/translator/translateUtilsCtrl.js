@@ -7,7 +7,10 @@ var
 	hendrix = require('../../../lib/hendrix'),
 	connectionDb = hendrix.getConnectionDb(),
 	Language = connectionDb.model('Language'),
-	log = hendrix.log;
+	log = hendrix.log,
+  fs = require('fs'),
+  officeGen = require('officegen');
+
 
 
 
@@ -36,7 +39,36 @@ function getTranslate(req, res, next, getStr) {
 	});
 }
 
+exports.createXsl = function(translate){
 
+  var xlsx = officeGen( 'xlsx' );
+
+  xlsx.on ( 'finalize', function ( written ) {
+    log ( 'Finish to create an Excel file.\nTotal bytes created: ' + written + '\n' );
+  });
+
+  xlsx.on ( 'error', function ( err ) {
+    log(err);
+  });
+
+  var  sheet = xlsx.makeNewSheet ();
+  sheet.name = 'BandPad site text';
+
+  translate.forEach(function(t,index){
+    sheet.data[index+1] = [];
+    sheet.data[index+1][0] = t.text;
+    sheet.data[index+1][3] = t.key;
+  });
+
+  var out = fs.createWriteStream ( 'out.xlsx' );
+
+  out.on ( 'error', function ( err ) {
+    log ( err );
+  });
+
+  xlsx.generate ( out );
+
+}
 
 
 

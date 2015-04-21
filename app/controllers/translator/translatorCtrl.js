@@ -10,7 +10,8 @@ var
 	countryCodes = require('country-data'),
 	supportedLanguages = hendrix.getSupportedLanguages(),
 	appDesc = hendrix.getAppDesc(),
-	log = require('../../../lib/hendrix').log;
+	log = require('../../../lib/hendrix').log,
+  translateUtilsCtrl = require('./translateUtilsCtrl');
 
 /***
  * Translator Sign Up
@@ -186,6 +187,12 @@ exports.translatePrint = function(req, res, next) {
 	query['translatedText.' + language] = true;
 
 	Translate.find({}, query, function(err,translate){
+
+    if (err){
+      next(err);
+    }
+
+    translateUtilsCtrl.createXsl(translate);
 
 		// create parameters for jade
 		var pars = {
