@@ -112,9 +112,6 @@ exports.fetchMessage = function(req, res, next){
 exports.root = function(req, res) {
 
 	var user;
-	console.log('admin user:');
-	console.log(req.user);
-
 	// admin root only shows name if exist
 	if (req.user && req.user.profile === 'admin') {
 		user = req.user.username;

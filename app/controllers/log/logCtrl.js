@@ -9,9 +9,7 @@ var
 	connectionDb = hendrix.getConnectionDb(),
 	log = hendrix.log,
 	winston = require('winston'),
-	time = require('time'),
-	requestIp = require('request-ip'),
-	geoIp = require('geoip-lite');
+	time = require('time');
 
 var t = 0;
 
