@@ -84,7 +84,7 @@ exports.postSignUp = function(req, res, next) {
 
 exports.signOut = function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.redirect('/translator');
 };
 
 
