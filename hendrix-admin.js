@@ -24,7 +24,7 @@ hendrix.init(connectionDb, {
 
   debugFlag: process.env.SOLOIST_DEBUG,
 
-  debugMail: 'bandpad.co@gmail.com',
+  debugMail: 'bandpad.debug@gmail.com',
 
   appName: bandpadConfig.APPNAME,
 

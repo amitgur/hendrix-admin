@@ -4,6 +4,7 @@ var
 	hendrix = require('../../../lib/hendrix'),
 	connectionDb = hendrix.getConnectionDb(),
 	User = connectionDb.model('User'),
+	System = connectionDb.model('System'),
 	log = hendrix.log,
 	_ = require('underscore');
 
@@ -127,5 +128,19 @@ exports.root = function(req, res) {
 	});
 };
 
+// increase language version in DB
+exports.updateLanguageVersion = function(req, res, next){
+
+	System.update({key:'systemDocument'}, {'$inc':{ 'languageVersion':1}}, function(err,doc){
+
+		if (err) {
+			log(err);
+			return next(err);
+		}
+
+		return next();
+
+	});
+}
 
 

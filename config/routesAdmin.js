@@ -62,6 +62,7 @@ module.exports = function(app, passport) {
 
 	app.post('/admin/translate/editPost/addOrUpdatePost',
 		adminCtrl.authenticateAdmin,
+		adminCtrl.updateLanguageVersion,
 		adminTranslateCtrl.addOrUpdatePost);
 
 	// add translate
@@ -72,6 +73,7 @@ module.exports = function(app, passport) {
 
 	app.post('/admin/translate/addOrUpdatePost',
 		adminCtrl.authenticateAdmin,
+		adminCtrl.updateLanguageVersion,
 		adminTranslateCtrl.addOrUpdatePost);
 
 	// remove translate

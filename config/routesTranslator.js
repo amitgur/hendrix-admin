@@ -72,6 +72,7 @@ module.exports = function(app, passport) {
 	// update one word only
 	app.post('/translator/getPagesLanguage',
 		translatorCtrl.authenticateTranslator,
+		adminCtrl.updateLanguageVersion,
 		translatorCtrl.updateTranslatorWord,
 		translatorCtrl.updateLanguageWord,
 		function(req,res){ // return ok
