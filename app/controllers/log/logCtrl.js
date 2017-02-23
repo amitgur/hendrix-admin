@@ -9,14 +9,11 @@ var
 	connectionDb = hendrix.getConnectionDb(),
 	log = hendrix.log,
 	winston = require('winston'),
-	time = require('time');
+  momentTimeZone = require('moment-timezone');
 
 var t = 0;
 
-// init ipDay on startup
-var ipDay = new time.Date();
-ipDay.setTimezone("Asia/Jerusalem");
-ipDay = ipDay.getDate();
+var ipDay = momentTimeZone().tz("Asia/Jerusalem").date();
 log("Initialize ipDay to: " + ipDay);
 
 /********************************
@@ -70,13 +67,11 @@ exports.logRender = function(req,res,next) {
 // convert unix string date to log display
 function convertTime(date){
 
-	var d = new time.Date(date);
+  var
+    d = momentTimeZone(date).tz("Asia/Jerusalem"),
+    str = d.format('D/M - hh:mm:ss');
 
-	d.setTimezone("Asia/Jerusalem");
-
-	var str = d.getDate() + "/" + (d.getMonth()+1) + " - " +  d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-
-	return str;
+  return str;
 }
 
 // render log page
